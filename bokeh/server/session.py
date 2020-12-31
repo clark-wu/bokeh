@@ -235,6 +235,7 @@ class ServerSession:
     def _handle_comm_req(self, message, connection):
         # 处理自定义消息请求
         self.document.on_comm_req(message)
+        return connection.ok(message)
 
     def _session_callback_added(self, event):
         wrapped = self._wrap_session_callback(event.callback)
