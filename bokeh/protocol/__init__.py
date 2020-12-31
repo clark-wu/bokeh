@@ -34,7 +34,7 @@ from .messages.pull_doc_req import pull_doc_req
 from .messages.push_doc import push_doc
 from .messages.server_info_reply import server_info_reply
 from .messages.server_info_req import server_info_req
-
+from .messages.comm_req import comm_req
 #-----------------------------------------------------------------------------
 # Globals and constants
 #-----------------------------------------------------------------------------
@@ -53,6 +53,7 @@ SPEC = {
     'PUSH-DOC': push_doc,
     'SERVER-INFO-REPLY': server_info_reply,
     'SERVER-INFO-REQ': server_info_req,
+    'COMM_REQ': comm_req,
 }
 
 #-----------------------------------------------------------------------------

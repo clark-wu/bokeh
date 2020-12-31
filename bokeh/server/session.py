@@ -231,6 +231,11 @@ class ServerSession:
         log.debug("Sending pull-doc-reply from session %r", self.id)
         return connection.protocol.create('PULL-DOC-REPLY', message.header['msgid'], self.document)
 
+    @_needs_document_lock
+    def _handle_comm_req(self, message, connection):
+        # 处理自定义消息请求
+        self.document.on_comm_req(message)
+
     def _session_callback_added(self, event):
         wrapped = self._wrap_session_callback(event.callback)
         self._callbacks.add_session_callback(wrapped)
@@ -242,6 +247,16 @@ class ServerSession:
     def pull(cls, message, connection):
         ''' Handle a PULL-DOC, return a Future with work to be scheduled. '''
         return connection.session._handle_pull(message, connection)
+
+    @classmethod
+    def comm_req(cls,message, connection):
+        """
+        处理一个自定义消息包
+        :param message:
+        :param connection:
+        :return:
+        """
+        return connection.session._handle_comm_req(message, connection)
 
     @_needs_document_lock
     def _handle_push(self, message, connection):

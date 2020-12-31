@@ -718,6 +718,14 @@ class Document:
 
             self._callbacks[callback] = callback
 
+    def on_comm_req(self, message):
+        """
+        自定义消息请求处理函数
+        :param message:
+        :return:
+        """
+        raise NotImplementedError
+
     def on_change_dispatch_to(self, receiver):
         if not receiver in self._callbacks:
             self._callbacks[receiver] = lambda event: event.dispatch(receiver)

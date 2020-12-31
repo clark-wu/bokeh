@@ -62,6 +62,7 @@ class ProtocolHandler:
         self._handlers['PUSH-DOC'] = ServerSession.push
         self._handlers['PATCH-DOC'] = ServerSession.patch
         self._handlers['SERVER-INFO-REQ'] = self._server_info_req
+        self._handlers['COMM_REQ'] = ServerSession.comm_req
 
     async def handle(self, message, connection):
         ''' Delegate a received message to the appropriate handler.
